@@ -18,9 +18,9 @@ namespace ApexBikeStore
         protected void Page_Load(object sender, EventArgs e)
         {
             #region Check User login status
-            if (Request.Cookies[".ASPXFORMSAUTH"] != null)
+            if (Context.User.Identity.Name != null)
             {
-                string user = Request.Cookies[".ASPXFORMSAUTH"].Name;
+                string user = Context.User.Identity.Name;
                 UserDetails(user);
             }
             else
@@ -32,87 +32,88 @@ namespace ApexBikeStore
 
         private void UserDetails(string user)
         {
-            #region Get User
+            lblMsg.Text = String.Format("Hey {0}, sorry to see you go! Don't worry though, we won't be going anywhere!", user);
+            //#region Get User
 
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand("Select_User", con))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = user;
+            //using (SqlConnection con = new SqlConnection(connectionString))
+            //{
+            //    using (SqlCommand cmd = new SqlCommand("Select_User", con))
+            //    {
+            //        cmd.CommandType = CommandType.StoredProcedure;
+            //        cmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = user;
 
-                    cmd.Connection = con;
+            //        cmd.Connection = con;
 
-                    // attempt to connect to server
-                    try
-                    {
-                        con.Open();
-                        SqlDataReader reader = cmd.ExecuteReader();
+            //        // attempt to connect to server
+            //        try
+            //        {
+            //            con.Open();
+            //            SqlDataReader reader = cmd.ExecuteReader();
 
-                        if (!reader.HasRows)
-                        {
-                            lblMsg.Text = "Woops something went wrong! You don't seem to be signed in!";
-                            //Response.Redirect("Login.aspx");
-                        }
-                        else
-                        {
-                            // request values from table
-                            int customerId = Convert.ToInt32(reader["CustomerId"].ToString());}
-                            string firstName = reader["FirstName"].ToString();
+            //            if (!reader.HasRows)
+            //            {
+            //                lblMsg.Text = "Woops something went wrong! You don't seem to be signed in!";
+            //                //Response.Redirect("Login.aspx");
+            //            }
+            //            else
+            //            {
+            //                // request values from table
+            //                int customerId = Convert.ToInt32(reader["CustomerId"].ToString());}
+            //                string firstName = reader["FirstName"].ToString();
 
-                            using (con)
-                            {
-                                using (SqlCommand cmd1 = new SqlCommand("Select_Cart", con))
-                                {
-                                    cmd1.CommandType = CommandType.StoredProcedure; 
+            //                using (con)
+            //                {
+            //                    using (SqlCommand cmd1 = new SqlCommand("Select_Cart", con))
+            //                    {
+            //                        cmd1.CommandType = CommandType.StoredProcedure; 
 
-                                    try
-                                    {
-                                        con.Open();
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        SqlDataReader r = cmd1.ExecuteReader();
+            //                        try
+            //                        {
+            //                            con.Open();
+            //                        }
+            //                        catch (Exception ex)
+            //                        {
+            //                            SqlDataReader r = cmd1.ExecuteReader();
 
-                                        if (!r.HasRows)
-                                        {
-                                            lblMsg.Text =
-                                                String.Format(
-                                                    "Hey {0}, sorry to see you go! Don't worry though, we won't be going anywhere!",
-                                                    firstName);
-                                        }
-                                        else
-                                        {
-                                            int count = Convert.ToInt32(r["Quantity"].ToString());
+            //                            if (!r.HasRows)
+            //                            {
+            //                                lblMsg.Text =
+            //                                    String.Format(
+            //                                        "Hey {0}, sorry to see you go! Don't worry though, we won't be going anywhere!",
+            //                                        firstName);
+            //                            }
+            //                            else
+            //                            {
+            //                                int count = Convert.ToInt32(r["Quantity"].ToString());
 
-                                            lblMsg.Text =
-                                                String.Format(
-                                                    "Hey {0}, sorry to see you go! Don't worry though - " +
-                                                    "the {1} items in your cart will be saved for later, " +
-                                                    "and we won't be going anywhere!", firstName, count);
-                                        }
-                                    }
-                                }
+            //                                lblMsg.Text =
+            //                                    String.Format(
+            //                                        "Hey {0}, sorry to see you go! Don't worry though - " +
+            //                                        "the {1} items in your cart will be saved for later, " +
+            //                                        "and we won't be going anywhere!", firstName, count);
+            //                            }
+            //                        }
+            //                    }
                                
-                            }
-                        }
-                    catch (Exception ex)
-                    {
-                        throw new Exception("Error: " + ex.Message);
-                    }
-                    finally
-                    {
-                        // close connection
-                        con.Close();   
-                    }
-                }
-            }
-            #endregion
+            //                }
+            //            }
+            //        catch (Exception ex)
+            //        {
+            //            throw new Exception("Error: " + ex.Message);
+            //        }
+            //        finally
+            //        {
+            //            // close connection
+            //            con.Close();   
+            //        }
+            //    }
+            //}
+            //#endregion
         }
 
         protected void btnSignOut_Click(object sender, EventArgs e)
         {
-            //FormsAuthentication.SignOut();
+            FormsAuthentication.SignOut();
             Response.Redirect("Login.aspx");
         }
     }

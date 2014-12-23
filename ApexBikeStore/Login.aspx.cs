@@ -22,7 +22,7 @@ namespace ApexBikeStore
         {
             #region Check Existing Login status
             // user already logged in
-            if (Request.Cookies[".ASPXFORMSAUTH"] == null)
+            if (Request.Cookies[".ASPXFORMSAUTH"] != null)
             {
                 // bring to sign out page
                 Response.Redirect("SignOut.aspx");
@@ -78,8 +78,9 @@ namespace ApexBikeStore
                                 if (check == true)
                                 {
                                     // login successful
-                                    //FormsAuthentication.RedirectFromLoginPage(email, cbxRememberMe.Checked);
-                                    LoginUser(email);
+                                    FormsAuthentication.RedirectFromLoginPage(email, cbxRemember.Checked);
+
+                                    //LoginUser(email);
 
                                 }
                                 else
@@ -152,15 +153,22 @@ namespace ApexBikeStore
                             }
                             else
                             {
-                                LoginUser(email);
-                                //FormsAuthentication.RedirectFromLoginPage(email, cbxRememberMe.Checked);
+                                // login successful
+                                FormsAuthentication.RedirectFromLoginPage(email, cbxRemember.Checked);
+
+                                //LoginUser(email);
+
+                                //HttpCookie cookie = FormsAuthentication.GetAuthCookie(email, cbxRememberMe.Checked);
+                                //Response.Cookies.Add(cookie);
+                                //Response.Redirect("Home.aspx");
+
                                 //string userData = "ApplicationSpecific data for this user.";
 
                                 //FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
                                 //  email,
                                 //  DateTime.Now,
                                 //  DateTime.Now.AddMinutes(30),
-                                //  isPersistent,
+                                //  cbxRememberMe.Checked,
                                 //  userData,
                                 //  FormsAuthentication.FormsCookiePath);
 
@@ -171,7 +179,7 @@ namespace ApexBikeStore
                                 //Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
 
                                 //// Redirect back to original URL.
-                                //Response.Redirect(FormsAuthentication.GetRedirectUrl(email, isPersistent));
+                                //Response.Redirect(FormsAuthentication.GetRedirectUrl(email, cbxRememberMe.Checked));
                             }
 
                         }
@@ -205,18 +213,28 @@ namespace ApexBikeStore
         #endregion
 
 
-        public void LoginUser(string email)
-        {
-            FormsAuthenticationTicket loginTicket = null;
-            HttpCookie loginCookie = null;
-            string returnUrl = "Home.aspx";
-            loginTicket = new FormsAuthenticationTicket(1, email, DateTime.Now, DateTime.Now.AddMinutes(60), false, Session.SessionID);
-            loginCookie = new HttpCookie(".ASPXAUTH");
-            loginCookie.Value = FormsAuthentication.Encrypt(loginTicket);
-            Response.Cookies.Add(loginCookie);
-            Response.Redirect(returnUrl, false);
+        //public void LoginUser(string email)
+        //{
+        //    string userData = "ApplicationSpecific data for this user.";
 
-        }
+        //    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
+        //      email,
+        //      DateTime.Now,
+        //      DateTime.Now.AddMinutes(30),
+        //      isPersistent,
+        //      userData,
+        //      FormsAuthentication.FormsCookiePath);
+
+        //    // Encrypt the ticket.
+        //    string encTicket = FormsAuthentication.Encrypt(ticket);
+
+        //    // Create the cookie.
+        //    Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+
+        //    // Redirect back to original URL.
+        //    Response.Redirect(FormsAuthentication.GetRedirectUrl(email, isPersistent));
+
+        //}
 
     }
 }

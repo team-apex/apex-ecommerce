@@ -14,7 +14,8 @@ namespace ApexBikeStore
             #region Check User login status
             if (Request.Cookies[".ASPXFORMSAUTH"] != null)
             {
-                lblMessage.Text = "Sup";
+                string user = Context.User.Identity.Name;
+                lblMessage.Text = "Welcome " + user;
             }
             else
             {
