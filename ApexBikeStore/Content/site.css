@@ -1,0 +1,96 @@
+﻿
+@font-face {
+    font-family: 'Track';
+    src: url('../fonts/Track.otf') format('opentype');
+}
+
+body {
+    font-family: 'Arial';
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Track', 'Arial', 'Calibri';
+}
+
+.container {
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 90%;
+}
+
+#footer {
+    font-family: 'Track', 'Arial', 'Calibri';
+    font-size: 12px;
+    margin: 0 auto;
+    text-align: center;
+    bottom: -10px;
+}
+
+.content {
+    width: 60%;
+    float: left;
+    margin-left: -1px;
+}
+
+#side {
+    float: right;
+    width: 30%;
+    margin-right: -30px;
+}
+
+#map-canvas {
+    width: 325px;
+    height: 275px;
+    margin: 0 auto;
+}
+
+.thumbs {
+    text-align: center;
+}
+.thumbs img{
+    width: 150px;
+    border: solid 2px #33CCFF;
+    margin-top: 25px;
+}
+
+#store {
+    float: left;
+    margin-left: 5px;
+}
+#winning {
+    float: right;
+    margin-right: 5px;
+}
+
+#login, #register {
+    float: left;
+    margin-left: 10%;
+    width: 40%;
+}
+
+.form-label {
+    margin-bottom: 50px;
+}
+
+.btn-form {
+    float: left;
+    font-family: 'Track', 'Arial', 'Calibri';
+}
+
+#rbnGender {
+    float: left;
+}
+
+.form-input {
+    margin-bottom: 14px;
+}
+
+#signout {
+    margin: 0 auto;
+    width: 40%;
+}
+
+#btnSpan {
+    margin: 0 auto;
+    width: 50%;
+}
