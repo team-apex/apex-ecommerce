@@ -69,7 +69,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .form-label {
-    margin-bottom: 50px;
+    display: inline-block;
+    margin-bottom: 10px;
+    width: 150px;
+    text-align: right;
 }
 
 .btn-form {

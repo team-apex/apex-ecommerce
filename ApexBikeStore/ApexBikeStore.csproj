@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Account.aspx" />
     <Content Include="App_Data\apex-store-db.mdf" />
     <Content Include="App_Data\apex-store-db_log.ldf">
       <DependentUpon>apex-store-db.mdf</DependentUpon>
@@ -108,6 +109,8 @@
     <Content Include="Scripts\jquery.bxslider.min.js" />
     <Content Include="Scripts\jquery.cookiebar.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Products.aspx" />
+    <Content Include="Search.aspx" />
     <Content Include="SignOut.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -120,6 +123,13 @@
     </Compile>
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account.aspx.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account.aspx.designer.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
     </Compile>
     <Compile Include="Apex.Master.cs">
       <DependentUpon>Apex.Master</DependentUpon>
@@ -151,6 +161,20 @@
     </Compile>
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SignOut.aspx.cs">
       <DependentUpon>SignOut.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

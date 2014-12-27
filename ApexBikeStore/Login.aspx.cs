@@ -156,7 +156,7 @@ namespace ApexBikeStore
                             }
                             else
                             {
-                                //string name = firstName + lastName;
+                                string name = firstName + lastName;
                                 // login successful
                                 //SendConfirmationEmail(name, email);
                                 FormsAuthentication.RedirectFromLoginPage(email, cbxRemember.Checked);
@@ -202,14 +202,14 @@ namespace ApexBikeStore
             #endregion
         }
 
-        // the only reason this did not work is that i could not get the 
-        // email address confirmed to allow for smtp request calls.
 
+        //Error: SmtpException has occurred: Mailbox unavailable. 
+        //The server response was: 5.7.3 Requested action aborted; user not authenticated
         //private void SendConfirmationEmail(string name, string email)
         //{
         //    try
         //    {
-        //        SmtpClient client = new SmtpClient();     
+        //        SmtpClient client = new SmtpClient();
         //        client.UseDefaultCredentials = true; // use credentials in web.config file
         //        MailAddress from = new MailAddress("apexcycling@outlook.com");
         //        MailAddress to = new MailAddress(email);
@@ -224,6 +224,7 @@ namespace ApexBikeStore
         //        message.SubjectEncoding = Encoding.UTF8;
         //        message.BodyEncoding = Encoding.UTF8;
         //        // send email
+        //        client.UseDefaultCredentials = true;
         //        client.Send(message);
 
         //    }
