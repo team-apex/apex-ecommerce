@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Mail;
+using System.Security.AccessControl;
 using System.Security.Policy;
+using System.Text;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Security;
@@ -153,7 +156,9 @@ namespace ApexBikeStore
                             }
                             else
                             {
+                                //string name = firstName + lastName;
                                 // login successful
+                                //SendConfirmationEmail(name, email);
                                 FormsAuthentication.RedirectFromLoginPage(email, cbxRemember.Checked);
 
                                 //LoginUser(email);
@@ -196,6 +201,43 @@ namespace ApexBikeStore
             }
             #endregion
         }
+
+        // the only reason this did not work is that i could not get the 
+        // email address confirmed to allow for smtp request calls.
+
+        //private void SendConfirmationEmail(string name, string email)
+        //{
+        //    try
+        //    {
+        //        SmtpClient client = new SmtpClient();     
+        //        client.UseDefaultCredentials = true; // use credentials in web.config file
+        //        MailAddress from = new MailAddress("apexcycling@outlook.com");
+        //        MailAddress to = new MailAddress(email);
+        //        MailMessage message = new System.Net.Mail.MailMessage(from, to);
+
+        //        // set subject, body and encoding
+        //        message.Subject = "Email Confirmation";
+        //        message.Body = String.Format("Hello {0}.\n" +
+        //                                     "This is an email" +
+        //                                     " confirming your registration " +
+        //                                     "with Apex Cycling", name);
+        //        message.SubjectEncoding = Encoding.UTF8;
+        //        message.BodyEncoding = Encoding.UTF8;
+        //        // send email
+        //        client.Send(message);
+
+        //    }
+        //    catch (SmtpException ex)
+        //    {
+        //        throw new Exception("SmtpException has occurred: " + ex.Message);
+        //    }
+
+        //    /**
+        //     *  ^ Would really need a live website to direct the user to a locally hosted web-page.
+        //     */
+
+        //    FormsAuthentication.RedirectFromLoginPage(email, cbxRemember.Checked);
+        //}
 
         #region Hashing Password
         // Bcrypt hashing function
