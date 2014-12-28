@@ -109,7 +109,6 @@
     <Content Include="Scripts\jquery.bxslider.min.js" />
     <Content Include="Scripts\jquery.cookiebar.js" />
     <Content Include="Scripts\npm.js" />
-    <Content Include="Products.aspx" />
     <Content Include="Search.aspx" />
     <Content Include="SignOut.aspx" />
     <Content Include="Web.config">
@@ -161,13 +160,6 @@
     </Compile>
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Products.aspx.cs">
-      <DependentUpon>Products.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Products.aspx.designer.cs">
-      <DependentUpon>Products.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Search.aspx.cs">
       <DependentUpon>Search.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
