@@ -18,8 +18,6 @@ namespace ApexBikeStore
         // connection to database
         static string connectionString = WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
 
-        Product product = new Product();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             string searchTerm = Session["term"].ToString();

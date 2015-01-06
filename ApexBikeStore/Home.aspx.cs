@@ -8,9 +8,13 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ApexBikeStore.Models;
 
 namespace ApexBikeStore
 {
+    // delegate
+    public delegate double CalculateOrder(double total);
+
     public partial class Home : System.Web.UI.Page
     {
         // connection to database
@@ -80,6 +84,27 @@ namespace ApexBikeStore
                 lblMessage.Text = String.Format("It appears you have not yet confirmed your email with us, " +
                                                 "in order to provide a unique user experience please do this now " +
                                                 "(or whenever you can).");
+            }
+        }
+
+        protected void btnShowOrder_Click(object sender, EventArgs e)
+        {
+            Order myOrder = new Order();
+
+            double price = Convert.ToDouble(txtPrice.Text);
+            double orderTotal = price;
+
+            myOrder.Price = price;
+
+            if (myOrder.Price >= 350)
+            {
+                CalculateOrder high = new CalculateOrder(myOrder.HighDeliveryRate);
+                lblOrder.Text = String.Format("Order Total: €" + high(price));
+            }
+            else
+            {
+                CalculateOrder low = new CalculateOrder(myOrder.LowDeliveryRate);
+                lblOrder.Text = String.Format("Order Total: €" + low(price));
             }
         }
     }

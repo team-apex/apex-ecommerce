@@ -7,8 +7,10 @@
     <p>
     <asp:Label ID="lblMessage" runat="server"></asp:Label>
     </p>
-    <div>
-        <a href="Cart.aspx">View your cart!</a><br/>
-        <a href="Account.aspx">Edit your account!</a>
+    <div class="container">
+        <asp:TextBox runat="server" ID="txtPrice"></asp:TextBox>
+        <asp:Button runat="server" ID="btnShowOrder" Text="Show Order" CssClass="btn btn-info" OnClick="btnShowOrder_Click"/>
+        <asp:Label runat="server" ID="lblOrder"></asp:Label><p/>
+        <a href="Account.aspx"><span class="btn btn-primary">Edit your account!</span></a>
     </div>
 </asp:Content>

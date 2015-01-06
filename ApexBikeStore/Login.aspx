@@ -116,7 +116,7 @@
     <script>
             $(function () {
                 $(".date").datepicker({
-                    dateFormat: "dd/MM/yy"
+                    dateFormat: "dd/mm/yy"
                 }).val();
             });
     </script>
